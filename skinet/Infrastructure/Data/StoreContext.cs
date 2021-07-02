@@ -1,5 +1,6 @@
 ﻿using Core.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Infrastructure.Data
 {
@@ -18,24 +19,8 @@ namespace Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Product>().HasData(new Product
-            {
-                Id = 1,
-                Name = "Product one"
-            });
-
-            modelBuilder.Entity<Product>().HasData(new Product
-            {
-                Id = 2,
-                Name = "Product two"
-            });
-
-            modelBuilder.Entity<Product>().HasData(new Product
-            {
-                Id = 3,
-                Name = "Product three"
-            });
-
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
+
     }
 }
